@@ -1,22 +1,33 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Header from './components/Header';
+import useLocation from './hooks/useLocation';
 
 
 function App() {
   const [map, setMap] = useState(null);
+  const { location, setCurrentLocation} = useLocation();
 
-  // 맵 호출
+  /** 지도를 불러옵니다 */
+  const initMap = (location) => {
+    const map = new naver.maps.Map("map", {
+      center: new naver.maps.LatLng(location.latitude, location.longitude), // 초기 위치
+      zoom: 18,
+    });
+    setMap(map);
+  }
+
+
+  useEffect(() => { setCurrentLocation();}, []);
+
   useEffect(()=>{
-    const initMap = () => {
-      const map = new naver.maps.Map("map", {
-        center: new naver.maps.LatLng(37.5665, 126.9780), // 초기 위치
-        zoom: 18,
-      });
-      setMap(map);
+    if (location) {
+      initMap(location);
     }
-  initMap();
-},[]);
+  },[location]);
+
+ 
+
 
   return (
     <>
