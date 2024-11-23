@@ -10,20 +10,28 @@ function App() {
 
   /** 지도를 불러옵니다 */
   const initMap = (location) => {
-    const map = new naver.maps.Map("map", {
-      center: new naver.maps.LatLng(location.latitude, location.longitude), // 초기 위치
-      zoom: 18,
-    });
-    setMap(map);
-  }
+
+      const map = new naver.maps.Map("map", {
+        center: new naver.maps.LatLng(location.latitude, location.longitude), // 초기 위치
+        zoom: 18,
+      });
+      setMap(map);
+    }
 
 
-  useEffect(() => { setCurrentLocation();}, []);
+  useEffect(() => { 
+    setCurrentLocation();
+  }, []);
 
   useEffect(()=>{
     if (location) {
-      initMap(location);
+      if (!map)  initMap(location); 
+      else {
+        let newPosition = new naver.maps.LatLng(location.latitude, location.longitude);
+        map.setCenter(newPosition);
+      }
     }
+
   },[location]);
 
  
