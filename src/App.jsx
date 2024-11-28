@@ -12,8 +12,6 @@ function App() {
   const [selectedPerson, setSelectedPerson] = useState(null);
   const { location, setCurrentLocation } = useLocation();
 
-  console.log("[App] Current location:", location);
-
   /** 지도를 불러옵니다 */
   const initMap = (location) => {
     const map = new naver.maps.Map("map", {
@@ -24,7 +22,6 @@ function App() {
     // 지도 영역 변경 이벤트 처리
     naver.maps.Event.addListener(map, "bounds_changed", () => {
       const bounds = map.getBounds();
-      console.log("[App] Map bounds changed");
 
       // 현재 지도 영역 내의 실종자 필터링
       const visible = MOCK_MISSING_PERSONS.filter((person) => {
@@ -33,7 +30,6 @@ function App() {
       });
 
       setVisiblePersons(visible);
-      console.log("[App] Visible persons:", visible.length);
     });
 
     setMap(map);
@@ -41,8 +37,6 @@ function App() {
 
   // 마커 생성 함수
   const createMarkers = () => {
-    console.log("[App] Creating markers");
-
     // 기존 마커 제거
     markers.forEach((marker) => marker.setMap(null));
 
