@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Header from './components/Header';
+import MissingPersonPanel from './components/MissingPersonPanel';
 import useLocation from './hooks/useLocation';
+
 
 
 function App() {
@@ -40,6 +42,7 @@ function App() {
   return (
     <>
       <Header/>
+      <MissingPersonPanel/>
       <div id="map" style={{ width: "100%", height: "100vh" }} />
     </>
   )
