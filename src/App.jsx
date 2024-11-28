@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import Header from './components/Header';
-import useLocation from './hooks/useLocation';
+import Header from 'components/Header';
+import useLocation from 'hooks/useLocation';
 
 
 function App() {
