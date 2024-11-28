@@ -93,7 +93,7 @@ function App() {
   return (
     <>
       <Header />
-      <MissingPersonPanel persons={visiblePersons} selectedPerson={selectedPerson} onPersonClick={handlePersonClick} />
+      <MissingPersonPanel persons={visiblePersons} onPersonClick={handlePersonClick} />
       <div id="map" style={{ width: "100%", height: "100vh" }} />
     </>
   );

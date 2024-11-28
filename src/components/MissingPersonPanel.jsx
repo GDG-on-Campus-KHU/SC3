@@ -159,7 +159,7 @@ export const InfoRow = styled.div`
   font-size: 14px;
 `;
 
-const MissingPersonPanel = ({ persons, selectedPerson, onPersonClick }) => {
+const MissingPersonPanel = ({ persons, onPersonClick }) => {
   return (
     <PanelContainer>
       <Header>
@@ -171,10 +171,8 @@ const MissingPersonPanel = ({ persons, selectedPerson, onPersonClick }) => {
           <EmptyState>현재 지도 영역에 표시할 실종자 정보가 없습니다.</EmptyState>
         ) : (
           persons.map((person) => {
-            const isSelected = selectedPerson?.id === person.id;
-
             return (
-              <PersonCard key={person.id} onClick={() => onPersonClick(person)}>
+              <PersonCard key={person.name + person.lastSeen} onClick={() => onPersonClick(person)}>
                 <PersonImageContainer>
                   <PersonImage src={person.image} alt={person.name} />
                 </PersonImageContainer>
@@ -223,9 +221,6 @@ const MissingPersonPanel = ({ persons, selectedPerson, onPersonClick }) => {
 
 MissingPersonPanel.propTypes = {
   persons: PropTypes.arrayOf(PropTypes.object).isRequired,
-  selectedPerson: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  }),
   onPersonClick: PropTypes.func.isRequired,
 };
 
