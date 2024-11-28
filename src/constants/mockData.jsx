@@ -1,6 +1,5 @@
 export const MOCK_MISSING_PERSONS = [
   {
-    id: 1,
     name: "김철수",
     age: 65,
     gender: "남성",
@@ -16,7 +15,6 @@ export const MOCK_MISSING_PERSONS = [
     image: "/api/placeholder/120/150",
   },
   {
-    id: 2,
     name: "이영희",
     age: 8,
     gender: "여성",
