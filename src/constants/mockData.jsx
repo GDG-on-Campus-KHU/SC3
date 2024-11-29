@@ -7,10 +7,11 @@ export const MOCK_MISSING_PERSONS = [
     height: 170,
     lastSeen: "2024-03-19 14:30",
     address: "부산광역시 사하구",
-    location: {
-      latitude: 37.5665,
-      longitude: 126.978,
+   location: {
+    latitude: 37.566132,
+    longitude: 126.975035,
     },
+    region: ['중구 세종대로 99'],
     description: "검은색 점퍼, 청바지 착용",
     image: "/api/placeholder/120/150",
   },
@@ -22,10 +23,11 @@ export const MOCK_MISSING_PERSONS = [
     height: 125,
     lastSeen: "2024-03-20 16:45",
     address: "부산광역시 사하구",
-    location: {
-      latitude: 37.5635,
-      longitude: 126.9745,
-    },
+   location: {
+   latitude: 37.566730,
+    longitude: 126.978225,
+  },
+    region: ['중구 세종대로 110'],
     description: "분홍색 외투, 흰색 운동화 착용",
     image: "/api/placeholder/120/150",
   },
