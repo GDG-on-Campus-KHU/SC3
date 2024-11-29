@@ -4,17 +4,16 @@ import Header from "./components/Header";
 import MissingPersonPanel from "./components/MissingPersonPanel";
 import useLocation from "./hooks/useLocation";
 import { useMissingPersons } from "./hooks/useMissingPersons";
-import { MOCK_MISSING_PERSONS } from "./constants/mockData";
+//import { MOCK_MISSING_PERSONS } from "./constants/mockData";
 
 function App() {
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [visiblePersons, setVisiblePersons] = useState([]);
   const [processedPersons, setProcessedPersons] = useState([]);
-  //const { persons } = useMissingPersons();
+  const { persons } = useMissingPersons();
   const { location, setCurrentLocation } = useLocation();
-
-  const [persons, setPersons] = useState([]);
+  //const [persons, setPersons] = useState([]);
   // 실종자 데이터 초기 처리
   useEffect(() => {
     if (!persons.length) return;
@@ -77,6 +76,7 @@ function App() {
     });
 
     setMap(map);
+    //setPerson(MOCK_MISSING_PERSONS);
   };
 
   // 지도 영역 변경 이벤트 처리
