@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Clock, MapPin, Ruler, Weight, ClipboardList } from "lucide-react";
 import styled from "styled-components";
@@ -172,7 +171,7 @@ const MissingPersonPanel = ({ persons, onPersonClick }) => {
         ) : (
           persons.map((person) => {
             return (
-              <PersonCard key={person.name + person.lastSeen} onClick={() => onPersonClick(person)}>
+              <PersonCard key={person.id} onClick={() => onPersonClick(person)}>
                 <PersonImageContainer>
                   <PersonImage src={person.image} alt={person.name} />
                 </PersonImageContainer>
@@ -196,7 +195,7 @@ const MissingPersonPanel = ({ persons, onPersonClick }) => {
 
                     <InfoRow>
                       <ClipboardList size={12} color="#7f8c8d" />
-                      {person.description}
+                      {person.appearance}
                     </InfoRow>
 
                     <InfoRow>
