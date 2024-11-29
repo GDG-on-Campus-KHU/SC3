@@ -1,37 +1,41 @@
-/** string 타입의 데이터인 Region을 좌표로 변환합니다 */
-
 import { useState } from "react";
 
 const useRegionToLatLng = () => {
+  const [coordinates, setCoordinates] = useState({ lat: null, lng: null });
+  const [error, setError] = useState(null);
+  
+  // 지역 캐싱을 위한 Map
+  const cache = new Map();
 
-    const [lat,setLat] = useState(null); // 위도
-    const [lng,setLng] = useState(null); // 경도
-    
-    const setLatLng =  (region) => {
-        console.log("region:", region);
-        naver.maps.Service.geocode(
-            {query: region},
-             function(status, response) {
-            if (status !== naver.maps.Service.Status.OK) {
-                return console.log('찾을 수 없는 지역입니다');
-            }
-            
-            const result = response.v2.addresses[0]; 
-            if (result) {
-                setLat(result.y); 
-                setLng(result.x);
-                
-            } else {
-                console.log('주소 결과가 없습니다.');
-            }
-
-
-    
-        });
+  const setLatLng = (region) => {
+    if (cache.has(region)) {
+      setCoordinates(cache.get(region)); // 캐싱된 값 사용
+      return;
     }
 
+    naver.maps.Service.geocode({ query: region }, (status, response) => {
+      if (status !== naver.maps.Service.Status.OK) {
+        const errorMsg = '찾을 수 없는 지역입니다.';
+        setError(errorMsg);
+        console.error(errorMsg);
+        return;
+      }
 
-    return {setLatLng, lat, lng }
-}
+      const result = response.v2.addresses[0];
+      if (result) {
+        const newCoordinates = { lat: result.y, lng: result.x };
+        cache.set(region, newCoordinates); // 캐싱 저장
+        setCoordinates(newCoordinates);
+      } else {
+        const errorMsg = '주소 결과가 없습니다.';
+        setError(errorMsg);
+        console.error(errorMsg);
+      }
+    });
+  };
+
+  return { setLatLng, coordinates, error };
+};
 
 export default useRegionToLatLng;
+
