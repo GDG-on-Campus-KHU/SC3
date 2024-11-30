@@ -174,6 +174,7 @@ export const InfoRow = styled.div`
 const PanelContent = styled.div`
     max-height: ${(props) => (props.isOpen ? "calc(100vh - 120px)" : "0")};
     transition: max-height 0.3s ease-in-out;
+    overflow: ${(props) => (props.isOpen ? "null" : "hidden")};
 `;
 
 const MissingPersonPanel = ({ persons, onPersonClick }) => {
