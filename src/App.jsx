@@ -22,38 +22,39 @@ function App() {
       const updatedPersons = await Promise.all(
         persons.map(async (person) => {
           // string 주소로 좌표 변환
-          let location = { latitude: null, longitude: null };
+          let location = {
+            latitude: 33 + Math.random() * 5,
+            longitude: 126 + Math.random() * 3,
+          };
           try {
             const { lat, lng } = await new Promise((resolve, reject) => {
-              naver.maps.Service.geocode({ query: person.region[0] }, (status, response) => {
+              naver.maps.Service.geocode({ query: person.address }, (status, response) => {
                 if (status === naver.maps.Service.Status.OK && response.v2.addresses[0]) {
                   const result = response.v2.addresses[0];
                   resolve({ lat: result.y, lng: result.x });
                 } else {
-                  resolve({ lat: null, lng: null });
+                  resolve({ lat: 33 + Math.random() * 5, lng: 126 + Math.random() * 3 });
                 }
               });
             });
             location = { latitude: lat, longitude: lng };
-          } 
-          catch (err) {
+          } catch (err) {
             console.error("Geocoding failed:", err);
           }
-  
+
           return {
             ...person,
             location,
-            image: `/dummy_image.jpg`, // public 폴더의 이미지 경로
           };
         })
       );
-      
+
       console.log("Initial processed persons:", updatedPersons);
       setProcessedPersons(updatedPersons);
-    }
+    };
 
     // geocoding 구현 후 변경
-   /*  const processed = 
+    /*  const processed = 
       persons.map((person, index) => ({
       ...person,
       location: {
@@ -64,8 +65,7 @@ function App() {
       image: `/dummy_image.jpg`,  // public 폴더의 이미지 경로
     })); */
 
-   processed();
-
+    processed();
   }, [persons]);
 
   /** 지도를 불러옵니다 */
