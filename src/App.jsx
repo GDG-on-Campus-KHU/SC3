@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import MissingPersonPanel from "./components/MissingPersonPanel";
 import useLocation from "./hooks/useLocation";
 import { useMissingPersons } from "./hooks/useMissingPersons";
-import { getMarkerColor } from "./utils/markerUtils";
 //import { MOCK_MISSING_PERSONS } from "./constants/mockData";
 
 function App() {
@@ -108,7 +107,6 @@ function App() {
 
     // 마커 생성 함수
     const createMarkers = (mapInstance, personsData) => {
-        const color = getMarkerColor(personsData.timestamp);
         // 기존 마커 제거
         markers.forEach((marker) => marker.setMap(null));
 
