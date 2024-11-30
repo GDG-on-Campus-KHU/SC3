@@ -12,4 +12,13 @@ export default defineConfig({
       { find: "hooks", replacement: "/src/hooks" },
     ],
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://34.64.162.130:5000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })
