@@ -152,10 +152,22 @@ export const InfoContainer = styled.div`
 
 export const InfoRow = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
   color: #333;
   font-size: 14px;
+  line-height: 1.4;
+
+  svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  span {
+    flex: 1;
+    word-break: keep-all;
+    white-space: pre-wrap;
+  }
 `;
 
 const MissingPersonPanel = ({ persons, onPersonClick }) => {

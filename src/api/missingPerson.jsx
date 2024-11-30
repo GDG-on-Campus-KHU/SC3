@@ -26,8 +26,11 @@ const parseDescription = (description) => {
     .replace(/\d+cm/, "")
     .replace(/\d+kg/, "")
     .replace(/,,/g, ",")
-    .replace(/^,|,$/g, "")
-    .trim();
+    .replace(/^,+|,+$/g, "")
+    .split(",")
+    .map((item) => item.trim())
+    .filter((item) => item)
+    .join(", ");
 
   return {
     height,
@@ -66,5 +69,6 @@ const parsePersonData = (data) => {
     height,
     weight,
     appearance,
+    image: "/image.png",
   };
 };
